@@ -1,7 +1,7 @@
-from extras import facerect_get_image, get_default_provider_options, get_any_model, ArcFaceONNX, Face
-from model_zoo import PickableInferenceSession
+from src.extras import facerect_get_image, get_default_provider_options, get_any_model, ArcFaceONNX, Face
+from src.model_zoo import PickableInferenceSession
 import os
-from config import load_config
+from src.config import load_config
 from loguru import logger
 
 

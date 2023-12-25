@@ -6,10 +6,11 @@ import cv2
 # Add the parent directory to sys.path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
+parent_dir = os.path.dirname(parent_dir)
 sys.path.append(parent_dir)
 
 # Now you can import face_rect
-import face_rect
+import src.face_rect as face_rect
 
 
 class TestFaceRec(unittest.TestCase):

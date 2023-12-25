@@ -6,8 +6,11 @@ __pycache__/
 .python-version
 
 # models artifacts
-face_models/*.onnx
+src/face_models/*.onnx
 
 # jupyter
 .ipynb_checkpoints/
 *.ipynb
+
+# other ds_store files
+.DS_Store

@@ -1,7 +1,6 @@
-from model_zoo import RetinaFace, Landmark, ArcFaceONNX
+from src.model_zoo import RetinaFace, Landmark, ArcFaceONNX, ModelRouter
 import cv2
 import numpy as np
-from model_zoo import ModelRouter
 
 class ImageCache:
     data = {}

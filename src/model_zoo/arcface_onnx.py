@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import onnx
 import onnxruntime
-from utils import face_align
+from src.utils import face_align
 
 __all__ = [
     'ArcFaceONNX',
