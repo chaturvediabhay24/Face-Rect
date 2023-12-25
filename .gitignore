@@ -1,0 +1,13 @@
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# pyenv versions
+.python-version
+
+# models artifacts
+face_models/*.onnx
+
+# jupyter
+.ipynb_checkpoints/
+*.ipynb
