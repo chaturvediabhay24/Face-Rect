@@ -36,5 +36,11 @@ class TestFaceRec(unittest.TestCase):
         for face_embedding in self.fr.yield_embeddings(img):
             self.assertEqual(len(face_embedding["embedding"]), 512)
 
+    def test_load_config(self):
+        from src.config import load_config
+        config=load_config()
+        self.assertNotEqual(len(config.keys()), 0)
+
+
 if __name__ == '__main__':
     unittest.main()
