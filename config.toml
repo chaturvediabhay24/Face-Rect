@@ -1,0 +1,14 @@
+[storage]
+storagetype = "local"
+
+[upload]
+verification = true
+
+[download]
+verification = false
+
+[db]
+dbtype = "mongo"
+dbname = "imagesdb"
+embedding_table = "img2emb"
+config_table = "configs"
