@@ -15,3 +15,6 @@ src/face_models/*.onnx
 # other ds_store files
 .DS_Store
 test.py
+
+# local storage
+local_storage/*

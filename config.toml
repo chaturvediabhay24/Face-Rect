@@ -9,6 +9,12 @@ verification = false
 
 [db]
 dbtype = "mongo"
-dbname = "imagesdb"
+dbname = "faceRecDB"
 embedding_table = "img2emb"
 config_table = "configs"
+events_table = "events"
+
+[algo]
+algo_name = "faiss"  #faiss+mongo
+index_name = "IndexFlatL2"
+embedding_dimensions = 512

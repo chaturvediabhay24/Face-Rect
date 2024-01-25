@@ -1,15 +1,15 @@
 import importlib
 
-class DatabaseRouter:
-    def create(self, config):
+class AlgoRouter:
+    def create(self,config):
         try:
-            db_type = config["db"]["dbtype"]
-            class_name = f'{db_type.capitalize()}DB'
+            algo_name = config["algo"]["algo_name"]
+            class_name = f'{algo_name.capitalize()}Algo'
             module = importlib.import_module(
-                f'db.{db_type}_db')
+                f'algo.{algo_name}_algo')
             class_ = getattr(module, class_name)
             instance = class_(config)
             return instance
         except (ImportError, AttributeError):
             raise NotImplementedError(
-                f'Database Backend {db_type} is not supported')
+                f'Algo Backend {algo_name} is not supported')

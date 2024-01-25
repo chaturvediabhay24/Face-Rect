@@ -1,23 +1,42 @@
 import os
+import uuid
+from time import time
 from typing import List
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Query
+from loguru import logger
+import json
 
 from src.config import load_config
-from db.db_zoo import DatabaseRouter
-from storage.storage_zoo import StorageRouter
+from algo.algo_zoo import AlgoRouter
+from configs.api_config import *
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 config=load_config(CURRENT_DIR)
+logger.info(f"Config: {config}")
 
-db = DatabaseRouter.create(config["db"]["dbtype"])
-storage = StorageRouter.create(config["storage"]["storagetype"])
+algorithm = AlgoRouter().create(config)
 
 app = FastAPI()
 
+@app.post("/registerEvent/")
+async def registerEvent(event: Event):
+    try:
+        response = algorithm.register_event(event)
+        return {"status": "DONE", "event_id": response["event_id"]}
+    except Exception as e:
+        return {"status": "FAILURE", "reason": str(e)}
+
 @app.post("/upload/")
-async def create_upload_files(files: List[UploadFile] = File(...)):
-    return 
+async def create_upload_files(event_id: str = Query(...), files: List[UploadFile] = File(...)):
+    # try:
+        config = {"event_id": event_id}
+        response = algorithm.upload(config, files)
+        return {"status": "DONE", "response": response}
+    # except Exception as e:
+    #     return {"status": "FAILURE", "reason": str(e)}
 
 @app.post("/download/")
-async def create_upload_files(files: List[UploadFile] = File(...)):
-    return 
+async def create_download_files(event_id: str = Query(...), files: List[UploadFile] = File(...), limit: int = 2, threshold: float = 0.4):
+    config = {"event_id": event_id, "limit": limit, "threshold": threshold}
+    response = algorithm.download(config, files)
+    return response
