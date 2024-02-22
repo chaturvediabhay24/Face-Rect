@@ -15,6 +15,6 @@ config_table = "configs"
 events_table = "events"
 
 [algo]
-algo_name = "faiss"  #faiss+mongo
-index_name = "IndexFlatL2"
+algo_name = "mongoVectorSearch"  #faiss
+index_name = "vector_filter_index"    #"IndexFlatL2"
 embedding_dimensions = 512

@@ -28,15 +28,18 @@ async def registerEvent(event: Event):
 
 @app.post("/upload/")
 async def create_upload_files(event_id: str = Query(...), files: List[UploadFile] = File(...)):
-    # try:
+    try:
         config = {"event_id": event_id}
         response = algorithm.upload(config, files)
         return {"status": "DONE", "response": response}
-    # except Exception as e:
-    #     return {"status": "FAILURE", "reason": str(e)}
+    except Exception as e:
+        return {"status": "FAILURE", "reason": str(e)}
 
 @app.post("/download/")
 async def create_download_files(event_id: str = Query(...), files: List[UploadFile] = File(...), limit: int = 2, threshold: float = 0.4):
-    config = {"event_id": event_id, "limit": limit, "threshold": threshold}
-    response = algorithm.download(config, files)
-    return response
+    try:
+        config = {"event_id": event_id, "limit": limit, "threshold": threshold}
+        response = algorithm.download(config, files)
+        return response
+    except Exception as e:
+        return {"status": "FAILURE", "reason": str(e)}
