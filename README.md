@@ -17,6 +17,8 @@ Start mongodb server using docker.
 docker run -p 27017:27017 mongo
 ```
 
+For using mongo vector search. You might have to create db and index on atlas and provide URL, dbname etc details in config.toml file.
+
 Start uvicorn server.
 
 ```bash
