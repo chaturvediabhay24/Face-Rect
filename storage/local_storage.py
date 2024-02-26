@@ -7,7 +7,7 @@ from .storage_base import StorageBase
 class LocalStorage(StorageBase):
     def __init__(self, config) -> None:
         super().__init__(config)
-        self.bucketName = os.getenv("BUCKET_NAME", "local_storage")
+        self.bucketName = os.getenv("BUCKET_NAME", "facerect")
         self.uploadFolderName = os.getenv("FOLDER_NAME", "uploaded_images")
         self.upload_img_path = os.path.join(self.bucketName, self.uploadFolderName)
         os.makedirs(self.upload_img_path, exist_ok=True)
